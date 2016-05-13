@@ -11,6 +11,7 @@ import {WallService} from './wall.service';
         <div id="wall">
             <column></column>
             <column></column>
+            <column></column>
         <div>
     `
 })
