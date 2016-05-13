@@ -28,12 +28,15 @@ System.register(['angular2/core', './column.component', './wall.service'], funct
                 function Wall(wallService) {
                     this.wallService = wallService;
                 }
+                Wall.prototype.ngOnInit = function () {
+                    this.columns = this.wallService.getPhotos();
+                };
                 Wall = __decorate([
                     core_1.Component({
                         selector: 'wall',
                         directives: [column_component_1.Column],
                         providers: [wall_service_1.WallService],
-                        template: "\n        <div id=\"wall\">\n            <column></column>\n            <column></column>\n            <column></column>\n        <div>\n    "
+                        template: "\n            <column *ngFor=\"#column of columns\" [column]=\"column\"></column>\n    "
                     }), 
                     __metadata('design:paramtypes', [wall_service_1.WallService])
                 ], Wall);
@@ -43,4 +46,4 @@ System.register(['angular2/core', './column.component', './wall.service'], funct
         }
     }
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2FsbC5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJ3YWxsLmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztZQWtCQTtnQkFFSSxjQUFxQixXQUF1QjtvQkFBdkIsZ0JBQVcsR0FBWCxXQUFXLENBQVk7Z0JBRTVDLENBQUM7Z0JBakJMO29CQUFDLGdCQUFTLENBQUU7d0JBQ1IsUUFBUSxFQUFHLE1BQU07d0JBQ2pCLFVBQVUsRUFBRyxDQUFDLHlCQUFNLENBQUM7d0JBQ3JCLFNBQVMsRUFBRyxDQUFDLDBCQUFXLENBQUM7d0JBQ3pCLFFBQVEsRUFBRywrSUFNVjtxQkFDSixDQUFDOzt3QkFBQTtnQkFPRixXQUFDO1lBQUQsQ0FBQyxBQUxELElBS0M7WUFMRCx1QkFLQyxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtDb21wb25lbnR9IGZyb20gJ2FuZ3VsYXIyL2NvcmUnO1xuaW1wb3J0IHtDb2x1bW59IGZyb20gJy4vY29sdW1uLmNvbXBvbmVudCdcblxuaW1wb3J0IHtXYWxsU2VydmljZX0gZnJvbSAnLi93YWxsLnNlcnZpY2UnO1xuXG5AQ29tcG9uZW50ICh7XG4gICAgc2VsZWN0b3IgOiAnd2FsbCcsXG4gICAgZGlyZWN0aXZlcyA6IFtDb2x1bW5dLFxuICAgIHByb3ZpZGVycyA6IFtXYWxsU2VydmljZV0sXG4gICAgdGVtcGxhdGUgOiBgXG4gICAgICAgIDxkaXYgaWQ9XCJ3YWxsXCI+XG4gICAgICAgICAgICA8Y29sdW1uPjwvY29sdW1uPlxuICAgICAgICAgICAgPGNvbHVtbj48L2NvbHVtbj5cbiAgICAgICAgICAgIDxjb2x1bW4+PC9jb2x1bW4+XG4gICAgICAgIDxkaXY+XG4gICAgYFxufSlcblxuZXhwb3J0IGNsYXNzIFdhbGwge1xuXG4gICAgY29uc3RydWN0b3IgKHByaXZhdGUgd2FsbFNlcnZpY2U6V2FsbFNlcnZpY2UpIHtcblxuICAgIH1cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2FsbC5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJ3YWxsLmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztZQWNBO2dCQUdJLGNBQXFCLFdBQXVCO29CQUF2QixnQkFBVyxHQUFYLFdBQVcsQ0FBWTtnQkFFNUMsQ0FBQztnQkFFRCx1QkFBUSxHQUFSO29CQUNJLElBQUksQ0FBQyxPQUFPLEdBQUcsSUFBSSxDQUFDLFdBQVcsQ0FBQyxTQUFTLEVBQUUsQ0FBQztnQkFDaEQsQ0FBQztnQkFsQkw7b0JBQUMsZ0JBQVMsQ0FBRTt3QkFDUixRQUFRLEVBQUcsTUFBTTt3QkFDakIsVUFBVSxFQUFHLENBQUMseUJBQU0sQ0FBQzt3QkFDckIsU0FBUyxFQUFHLENBQUMsMEJBQVcsQ0FBQzt3QkFDekIsUUFBUSxFQUFHLHlGQUVWO3FCQUNKLENBQUM7O3dCQUFBO2dCQVlGLFdBQUM7WUFBRCxDQUFDLEFBVkQsSUFVQztZQVZELHVCQVVDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0NvbXBvbmVudCwgT25Jbml0fSBmcm9tICdhbmd1bGFyMi9jb3JlJztcbmltcG9ydCB7Q29sdW1ufSBmcm9tICcuL2NvbHVtbi5jb21wb25lbnQnXG5cbmltcG9ydCB7V2FsbFNlcnZpY2V9IGZyb20gJy4vd2FsbC5zZXJ2aWNlJztcblxuQENvbXBvbmVudCAoe1xuICAgIHNlbGVjdG9yIDogJ3dhbGwnLFxuICAgIGRpcmVjdGl2ZXMgOiBbQ29sdW1uXSxcbiAgICBwcm92aWRlcnMgOiBbV2FsbFNlcnZpY2VdLFxuICAgIHRlbXBsYXRlIDogYFxuICAgICAgICAgICAgPGNvbHVtbiAqbmdGb3I9XCIjY29sdW1uIG9mIGNvbHVtbnNcIiBbY29sdW1uXT1cImNvbHVtblwiPjwvY29sdW1uPlxuICAgIGBcbn0pXG5cbmV4cG9ydCBjbGFzcyBXYWxsIGltcGxlbWVudHMgT25Jbml0e1xuICAgIGNvbHVtbnMgOiBzdHJpbmdbXVtdO1xuXG4gICAgY29uc3RydWN0b3IgKHByaXZhdGUgd2FsbFNlcnZpY2U6V2FsbFNlcnZpY2UpIHtcblxuICAgIH1cblxuICAgIG5nT25Jbml0ICgpIHtcbiAgICAgICAgdGhpcy5jb2x1bW5zID0gdGhpcy53YWxsU2VydmljZS5nZXRQaG90b3MoKTtcbiAgICB9XG59XG4iXX0=

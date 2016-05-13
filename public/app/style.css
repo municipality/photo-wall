@@ -3,16 +3,18 @@ body {
 }
 
 /* Wall */
-#wall {
+wall {
     position : fixed;
     width: 100%;
     top : 50%;
     transform: translate(0, -50%);
     display: flex;
     flex-direction: column;
+    max-height: 80%;
 }
 
 column {
+    height: 100%;
     display: flex;
     position: relative;
     flex: 1 1 auto;
@@ -25,7 +27,7 @@ column {
 }
 
 column:hover {
-    transform:scale(1.5);
+    transform:scale(1.2);
     z-index: 2;
 }
 
