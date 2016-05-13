@@ -1,17 +1,67 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
 
 @Component ({
     selector : 'column',
     template : `
-            <div *ngFor="#item of column" class="column-image">
-                <img src={{item.src}}>
+        <div #container class="column-container">
+            <div *ngFor="#item of imageList" class="column-image">
+                <img #image (load)="imageLoaded(image, container)" src={{item.src}}>
             </div>
+        </div>
     `
 })
 
-export class Column {
-    @Input() column : string[];
+export class Column implements OnInit {
+    /** String of image srcs */
+    @Input() imageList : string[];
+    /** Load function to be fired after column is loaded */
+    @Input() loadFunction : Function;
+
+    loaded : number;
+    images : HTMLImageElement[];
+
+
     constructor () {
+        this.loaded = 0;
+        this.images = [];
+    }
+
+    /**
+    imageLoaded
+    keeps track of how many images are loaded
+    stores loaded images in array
+    */
+    imageLoaded (image, container) {
+        this.images.push(image);
+        this.loaded++;
+        if (this.loaded == this.imageList.length) {
+            //this.startAnimation();
+            this.loadFunction(container);
+        }
+    }
+
+    /**
+    startAnimation
+    Start the column animation once all images are loaded
+     */
+     startAnimation () {
+
+         for (var i = 0; i < this.images.length; i++) {
+             (()=> {
+                 var curr = this.images[i];
+                //  setInterval (()=>{
+                //      if (curr.style.left == "") {
+                //          curr.style.left = "1px";
+                //      }
+                //      else {
+                //          curr.style.left = (Number(curr.style.left.substring(0, curr.style.left.length-2)) + 1).toString() + "px";
+                //      }
+                //  }, 1);
+             })();
+         }
+     }
+
+    ngOnInit () {
 
     }
 }

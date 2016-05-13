@@ -2,9 +2,8 @@ import {Injectable} from 'angular2/core';
 
 @Injectable()
 export class WallService {
-    columns : string[][] = [
-
-    ];
+    columns : string[][] = [];
+    
     constructor () {
 
     }

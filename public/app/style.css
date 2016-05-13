@@ -14,11 +14,6 @@ wall {
 }
 
 column {
-    height: 100%;
-    display: flex;
-    position: relative;
-    flex: 1 1 auto;
-    z-index: 1;
     -webkit-transition: all .5s ease;
  -moz-transition: all .5s ease;
    -o-transition: all .5s ease;
@@ -29,6 +24,14 @@ column {
 column:hover {
     transform:scale(1.2);
     z-index: 2;
+}
+
+.column-container {
+    height: 100%;
+    display: flex;
+    position: relative;
+    flex: 1 1 auto;
+    z-index: 1;
 }
 
 .column-image {
@@ -43,9 +46,11 @@ column:hover {
 .column-image:hover {
     transform:scale(1.5);
     z-index: 3;
+    /*border: .2em solid white;*/
 }
 
 
 .column-image img {
+    position: relative;
     width: 100%;
 }
