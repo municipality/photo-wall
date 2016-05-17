@@ -8,7 +8,7 @@ import {WallService} from './wall.service';
     directives : [Column],
     providers : [WallService],
     template : `
-            <column *ngFor="#column of columns" [imageList]="column" [loadFunction]="columnLoaded"></column>
+            <column *ngFor="#column of columns" [imageList]="column" [loadFunction]="startAnimation"></column>
     `
 })
 
@@ -23,24 +23,27 @@ export class Wall implements OnInit{
         this.columns = this.wallService.getPhotos();
     }
 
-    columnLoaded (container) {
+    /** After column photos are done loaded, start animation */
+    startAnimation (container) {
         console.log(container);
         var container = container;
-        // setInterval(()=>{
-        //     container.style.left = (Number(container.style.left.substring(0, container.style.left.length-2)) - 3).toString() + "px";
-        //
-        //     let child = container.children[0];
-        //     if (container.offsetLeft + child.offsetWidth <= 0) {
-        //         container.removeChild(container.children[0]);
-        //         container.innerHTML = `${container.innerHTML}
-        //                                 <div class="column-image">${child.innerHTML}</div>`
-        //         container.style.left = "0px";
-        //     }
-        //     // if (container.offsetWidth + container.offsetLeft >= window.innerWidth) {
-        //     //     container.innerHTML = `<div class="column-image">
-        //     //         <img src="images/background/img30.jpg">
-        //     //         </div>${container.innerHTML}`;
-        //     // }
-        // }, 17);
+        container.onmouseenter = (e) => {
+            container.hover = true;
+        }
+        container.onmouseleave = (e) => {
+            container.hover = false;
+        }
+        var speed = Math.random()*10 + 1;
+        setInterval(()=>{
+            if (!container.hover) {
+                container.style.left = (Number(container.style.left.substring(0, container.style.left.length-2)) - speed).toString() + "px";
+                let child = container.children[0];
+                if (container.offsetLeft + child.offsetWidth <= 0) {
+                    container.style.left = "0px";
+                    container.appendChild(child);
+                    child.style.left = "-4px";
+                }
+            }
+        }, 60);
     }
 }

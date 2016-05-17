@@ -35,31 +35,10 @@ export class Column implements OnInit {
         this.images.push(image);
         this.loaded++;
         if (this.loaded == this.imageList.length) {
-            //this.startAnimation();
+            // load function handles the animation from wall.component
             this.loadFunction(container);
         }
     }
-
-    /**
-    startAnimation
-    Start the column animation once all images are loaded
-     */
-     startAnimation () {
-
-         for (var i = 0; i < this.images.length; i++) {
-             (()=> {
-                 var curr = this.images[i];
-                //  setInterval (()=>{
-                //      if (curr.style.left == "") {
-                //          curr.style.left = "1px";
-                //      }
-                //      else {
-                //          curr.style.left = (Number(curr.style.left.substring(0, curr.style.left.length-2)) + 1).toString() + "px";
-                //      }
-                //  }, 1);
-             })();
-         }
-     }
 
     ngOnInit () {
 

@@ -28,16 +28,18 @@ column:hover {
 }
 
 .column-container {
-    /*display: flex;*/
     position: relative;
-    /*flex: 1 1 auto;*/
+    /*Explicitly set to overflow width of viewport for now*/
     max-height: 10em;
-    min-width: 100em;
+    min-width: 150em;
+    margin: 0;
 }
 
 .column-image {
+    position: relative;
     width: 10em;
     height: auto;
+    z-index: 1;
     display: inline-block;
     /*flex: 1 1 auto;*/
     -webkit-transition: all .5s ease;
